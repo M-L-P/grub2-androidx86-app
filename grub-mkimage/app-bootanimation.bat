@@ -1,13 +1,14 @@
 @echo off
 cd /d "%~dp0"
 
-set /p boot=chain
-set /p device=
+set /p boot= < ..\mod_list\boot.txt
+::set /p device= < ..\mod_list\device.txt
 set /p graphical= < ..\mod_list\graphical.txt
-set /p shell=
+::set /p grubfm= < ..\mod_list\grubfm.txt
+::set /p shell= < ..\mod_list\shell.txt
 set /p storage= < ..\mod_list\storage.txt
-set /p terminal=minicmd
-set /p time= < ..\mod_list\time.txt
+set /p terminal= < ..\mod_list\terminal.txt
+::set /p time= < ..\mod_list\time.txt
 set /p var= < ..\mod_list\var.txt
 ..\grub-mkimage.exe ^
 -m app-bootanimation.xz ^
@@ -17,10 +18,12 @@ set /p var= < ..\mod_list\var.txt
 -o bootanimation.efi ^
 -O x86_64-efi ^
 %boot% ^
-%device% ^
+::%device% ^::
 %graphical% ^
-%shell% ^
+::%grubfm% ^::
+::%shell% ^::
 %storage% ^
 %terminal% ^
-%time% ^
-%var%
+::%time% ^::
+%var% ^
+configfile

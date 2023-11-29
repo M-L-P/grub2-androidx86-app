@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
 
 boot=chain
-device=
+#device=$(cat ../mod_list/device.txt)
 graphical=$(cat ../mod_list/graphical.txt)
-shell=
+#grubfm=$(cat ../mod_list/grubfm.txt)
+#shell=$(cat ../mod_list/shell.txt)
 storage=$(cat ../mod_list/storage.txt)
 terminal=minicmd
-time=$(cat ../mod_list/time.txt)
+#time=$(cat ../mod_list/time.txt)
 var=$(cat ../mod_list/var.txt)
 ../grub-mkimage \
 -m app-bootanimation.xz \
@@ -16,10 +17,12 @@ var=$(cat ../mod_list/var.txt)
 -o bootanimation.efi \
 -O x86_64-efi \
 $boot \
-$device \
+#$device \#
 $graphical \
-$shell \
+#$grubfm \#
+#$shell \#
 $storage \
 $terminal \
-$time \
-$var
+#$time \#
+$var \
+configfile
