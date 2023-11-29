@@ -1,1 +1,1 @@
-# grub2-androidx86-app-bootanimation
+# grub2-androidx86-app
