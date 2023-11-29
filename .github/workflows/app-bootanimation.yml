@@ -1,0 +1,53 @@
+name: 开机动画
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '.github/workflows/app-bootanimation.yml'
+      - 'memdisk/bootanimation/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '.github/workflows/app-bootanimation.yml'
+      - 'memdisk/bootanimation/**'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        type: [app-bootanimation]
+        app-name: [bootanimation]
+
+    name: 构建 ${{ matrix.type }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: 合成 mendisk
+      working-directory: memdisk
+      run: sudo bash ./${{ matrix.type }}.sh
+
+    - name: 克隆 grub2
+      run: |
+        git clone https://github.com/M-L-P/grub2.git
+        cd grub2
+        ls -l
+
+    - name: 合成 ${{ matrix.app-name }}.efi
+      run: |
+        chmod -R 777 grub2
+        cd grub2
+        mkdir ${{ matrix.type }}
+        ls -l
+        cp ../grub-mkimage/* ./${{ matrix.type }}
+        cp ../memdisk/${{ matrix.type }}.xz ./${{ matrix.type }}
+        cd ${{ matrix.type }}
+        ls -l
+        sudo bash ./${{ matrix.type }}.sh
+
+    - name: 上传到此处
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: ${{ matrix.type }}
+        path: ./grub2/${{ matrix.type }}/${{ matrix.app-name }}.efi
