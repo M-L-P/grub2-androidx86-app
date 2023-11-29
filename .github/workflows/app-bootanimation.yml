@@ -5,11 +5,13 @@ on:
     branches: [ "main" ]
     paths:
       - '.github/workflows/app-bootanimation.yml'
+      - 'grub-mkimage/app-bootanimation.sh'
       - 'memdisk/bootanimation/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - '.github/workflows/app-bootanimation.yml'
+      - 'grub-mkimage/app-bootanimation.sh'
       - 'memdisk/bootanimation/**'
 
 jobs:
