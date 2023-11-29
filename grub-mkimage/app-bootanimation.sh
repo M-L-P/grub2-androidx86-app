@@ -21,4 +21,4 @@ $graphical \
 $storage \
 $terminal \
 $var \
-configfile
+configfile play

@@ -22,4 +22,4 @@ set /p var= < ..\mod_list\var.txt
 %storage% ^
 %terminal% ^
 %var% ^
-configfile
+configfile play
