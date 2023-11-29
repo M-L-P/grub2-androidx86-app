@@ -25,8 +25,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: 合成 mendisk
-      working-directory: memdisk
-      run: sudo bash ./${{ matrix.app-name }}/打包.sh
+      working-directory: memdisk/${{ matrix.app-name }}
+      run: sudo bash ./打包.sh
 
     - name: 克隆 grub2
       run: |
