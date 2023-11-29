@@ -17,12 +17,8 @@ var=$(cat ../mod_list/var.txt)
 -o bootanimation.efi \
 -O x86_64-efi \
 $boot \
-#$device \#
 $graphical \
-#$grubfm \#
-#$shell \#
 $storage \
 $terminal \
-#$time \#
 $var \
 configfile
